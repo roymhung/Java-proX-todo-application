@@ -32,6 +32,12 @@ public class TodoController {
         return "Get all todo items";
     }
 
+    @GetMapping("/update-todo")
+    public String updateTodo() {
 
+        this.todoService.handleUpdateTodo();
+
+        return "Update todo item";
+    }
 
 }
