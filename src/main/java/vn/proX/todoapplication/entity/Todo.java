@@ -1,4 +1,4 @@
-package vn.proX.todoapplication.models;
+package vn.proX.todoapplication.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -15,8 +15,7 @@ public class Todo {
     private String username;
     private boolean isCompleted;
 
-    public Todo(Long id, String username, boolean isCompleted) {
-        this.id = id;
+    public Todo(String username, boolean isCompleted) {
         this.username = username;
         this.isCompleted = isCompleted;
     }
@@ -49,7 +48,6 @@ public class Todo {
     public String toString() {
         return "Todo [id=" + id + ", username=" + username + ", isCompleted=" + isCompleted + "]";
     }
-
 
 
 }
