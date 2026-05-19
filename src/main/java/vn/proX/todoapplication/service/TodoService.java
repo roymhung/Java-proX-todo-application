@@ -55,6 +55,20 @@ public class TodoService {
         }
     }
 
+    public void handleDeleteTodo() {
+        // Logic to delete a todo item
+        // Optional<Todo> todoOptional = this.todoRepository.findById(4L);
+        // if (todoOptional.isPresent()) {
+        // Todo currentTodo = todoOptional.get();
+        // this.todoRepository.delete(currentTodo);
+        // System.out.println("Deleted todo item with username 'roy': " + currentTodo);
+        // } else {
+        // System.out.println("Todo item with username 'roy' not found");
+        // }
+
+        this.todoRepository.deleteById(4L);
+    }
+
 }
 
 

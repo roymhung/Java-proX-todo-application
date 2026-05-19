@@ -40,4 +40,12 @@ public class TodoController {
         return "Update todo item";
     }
 
+    @GetMapping("/delete-todo")
+    public String deleteTodo() {
+
+        this.todoService.handleDeleteTodo();
+
+        return "Delete todo item";
+    }
+
 }
