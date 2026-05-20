@@ -1,5 +1,8 @@
 package vn.proX.todoapplication.controller;
 
+import java.util.List;
+
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,11 +28,11 @@ public class TodoController {
     }
 
     @GetMapping("/todos")
-    public String getTodo() {
+    public ResponseEntity<List<Todo>> getTodo() {
 
-        this.todoService.handleGetTodo();
+        List<Todo> listTodo = this.todoService.handleGetTodo();
 
-        return "Get all todo items";
+        return ResponseEntity.ok().body(listTodo);
     }
 
     @GetMapping("/update-todo")
