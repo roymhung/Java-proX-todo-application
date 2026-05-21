@@ -36,26 +36,26 @@ public class TodoService {
         return todoOptional.isPresent() ? todoOptional.get() : null;
     }
 
-    public void handleUpdateTodo() {
+    public void handleUpdateTodo(Long id, Todo inputTodo) {
         // Logic to update a todo item
-        Optional<Todo> todoOptional = this.todoRepository.findById(1L);
+        Optional<Todo> todoOptional = this.todoRepository.findById(id);
         if (todoOptional.isPresent()) {
             Todo currentTodo = todoOptional.get();
 
-            currentTodo.setUsername("roy123");
-            currentTodo.setCompleted(true);
+            currentTodo.setUsername(inputTodo.getUsername());
+            currentTodo.setCompleted(inputTodo.isCompleted());
 
             this.todoRepository.save(currentTodo);
-            System.out.println("Updated todo item with username 'roy': " + currentTodo);
+            System.out.println("Updated todo item: " + currentTodo);
         } else {
-            System.out.println("Todo item with username 'roy' not found");
+            System.out.println("Todo item with ID " + id + " not found");
         }
     }
 
-    public void handleDeleteTodo() {
+    public void handleDeleteTodo(Long id) {
         // Logic to delete a todo item
 
-        this.todoRepository.deleteById(4L);
+        this.todoRepository.deleteById(id);
     }
 
 }
