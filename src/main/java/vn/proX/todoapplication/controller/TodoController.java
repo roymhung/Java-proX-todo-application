@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import vn.proX.todoapplication.entity.Todo;
@@ -16,6 +17,16 @@ public class TodoController {
 
     public TodoController(TodoService todoService) {
         this.todoService = todoService;
+    }
+
+    @GetMapping("/todos/{id}")
+    public ResponseEntity<Todo> getTodoById(@PathVariable Long id) {
+        Todo todoData = this.todoService.GetTodoById(id);
+        if (todoData != null) {
+            return ResponseEntity.ok().body(todoData);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @GetMapping("/create-todo")

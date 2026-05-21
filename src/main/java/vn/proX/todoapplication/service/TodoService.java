@@ -31,6 +31,10 @@ public class TodoService {
         return this.todoRepository.findAll();
     }
 
+    public Todo GetTodoById(Long id) {
+        Optional<Todo> todoOptional = this.todoRepository.findById(id);
+        return todoOptional.isPresent() ? todoOptional.get() : null;
+    }
 
     public void handleUpdateTodo() {
         // Logic to update a todo item
