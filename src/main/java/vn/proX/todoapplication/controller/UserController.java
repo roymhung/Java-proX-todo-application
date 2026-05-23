@@ -2,10 +2,11 @@ package vn.proX.todoapplication.controller;
 
 
 import java.util.List;
-
+import java.util.NoSuchElementException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -39,11 +40,11 @@ public class UserController {
 
 		// Bien var la tu dong xac dinh kieu du lieu, nen khong can khai bao kieu ApiResponse<User>
 		// khi khoi tao response
-		// var response =
-		// new ApiResponse<>(HttpStatus.CREATED, "User created successfully", created, null);
+		var response =
+				new ApiResponse<>(HttpStatus.CREATED, "User created successfully", created, null);
 
-		ApiResponse<User> response = new ApiResponse<User>(HttpStatus.CREATED,
-				"User created successfully", created, null);
+		// ApiResponse<User> response = new ApiResponse<User>(HttpStatus.CREATED,
+		// "User created successfully", created, null);
 
 		return ResponseEntity.status(HttpStatus.CREATED).body(response);
 	}
@@ -74,6 +75,13 @@ public class UserController {
 		var response = new ApiResponse<>(HttpStatus.OK, "User updated successfully", updated, null);
 		return ResponseEntity.ok().body(response);
 	}
+
+	// @ExceptionHandler(NoSuchElementException.class)
+	// public ResponseEntity<ApiResponse<User>> handleUserNotFound(NoSuchElementException ex) {
+	// ApiResponse<User> response = new ApiResponse<>(HttpStatus.INTERNAL_SERVER_ERROR,
+	// "handleUserNotFound", null, ex.getMessage());
+	// return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+	// }
 
 	@DeleteMapping("/users/{id}")
 	public ResponseEntity<ApiResponse<User>> deleteUser(@PathVariable Long id) {
