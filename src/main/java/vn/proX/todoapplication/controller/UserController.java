@@ -14,14 +14,14 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import vn.proX.todoapplication.entity.User;
-import vn.proX.todoapplication.service.UserService;
+import vn.proX.todoapplication.service.impl.UserServiceImpl;
 
 @Controller
 public class UserController {
 
-	private final UserService userService;
+	private final UserServiceImpl userService;
 
-	public UserController(UserService userService) {
+	public UserController(UserServiceImpl userService) {
 		this.userService = userService;
 	}
 

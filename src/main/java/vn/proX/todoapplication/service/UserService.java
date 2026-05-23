@@ -1,49 +1,19 @@
 package vn.proX.todoapplication.service;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 
-import org.springframework.stereotype.Service;
-
 import vn.proX.todoapplication.entity.User;
-import vn.proX.todoapplication.repository.UserRepository;
 
-@Service
-public class UserService {
-	private final UserRepository userRepository;
+public interface UserService {
 
-	public UserService(UserRepository userRepository) {
-		this.userRepository = userRepository;
-	}
+    User createUser(User user);
 
-	public User createUser(User user) {
-		if (userRepository.existsByEmail(user.getEmail())) {
-			throw new IllegalArgumentException("Email already exists");
-		}
-		return userRepository.save(user);
-	}
+    List<User> getAllUsers();
 
-	public List<User> getAllUsers() {
-		return userRepository.findAll();
-	}
+    Optional<User> getUserById(Long id);
 
-	public Optional<User> getUserById(Long id) {
-		return userRepository.findById(id);
-	}
+    User updateUser(Long id, User updatedUser);
 
-	public User updateUser(Long id, User updatedUser) {
-		return userRepository.findById(id).map(user -> {
-			user.setName(updatedUser.getName());
-			user.setEmail(updatedUser.getEmail());
-			return userRepository.save(user);
-		}).orElseThrow(() -> new NoSuchElementException("User not found"));
-	}
-
-	public void deleteUser(Long id) {
-		if (!userRepository.existsById(id)) {
-			throw new NoSuchElementException("User not found");
-		}
-		userRepository.deleteById(id);
-	}
+    void deleteUser(Long id);
 }

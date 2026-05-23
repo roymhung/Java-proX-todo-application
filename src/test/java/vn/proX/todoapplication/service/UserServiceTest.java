@@ -19,6 +19,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import vn.proX.todoapplication.entity.User;
 import vn.proX.todoapplication.repository.UserRepository;
+import vn.proX.todoapplication.service.impl.UserServiceImpl;
 
 @ExtendWith(MockitoExtension.class)
 public class UserServiceTest {
@@ -30,7 +31,7 @@ public class UserServiceTest {
 
     // inject the mock objects into the service being tested
     @InjectMocks
-    private UserService userService;
+    private UserServiceImpl userService;
 
     @Test
     public void createUser_shouldReturnUser_WhenEmailIsValid() {
