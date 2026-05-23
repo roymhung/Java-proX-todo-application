@@ -49,10 +49,14 @@ public class UserController {
 	@GetMapping("/users/{id}")
 	public ResponseEntity<ApiResponse<User>> getUserById(@PathVariable Long id) {
 		return userService.getUserById(id).map(user -> {
-			var response =
-					new ApiResponse<User>(HttpStatus.OK, "getUserById successfully", user, null);
-			return ResponseEntity.ok().body(response);
-		}).orElse(ResponseEntity.notFound().build());
+			var response = new ApiResponse<>(HttpStatus.OK, "getUserById", user, null);
+			return ResponseEntity.ok(response);
+
+		}).orElseGet(() -> {
+			ApiResponse<User> errorResponse = new ApiResponse<>(HttpStatus.NOT_FOUND,
+					"Không tìm thấy user với ID: " + id, null, "USER_NOT_FOUND");
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
+		});
 	}
 
 	@PutMapping("/users/{id}")
