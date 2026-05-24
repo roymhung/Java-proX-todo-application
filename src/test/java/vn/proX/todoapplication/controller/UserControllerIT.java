@@ -58,7 +58,8 @@ public class UserControllerIT {
 
                 // assert
                 ApiResponse<User> response = objectMapper.readValue(resultStr,
-                                new TypeReference<ApiResponse<User>>() {});
+                                new TypeReference<ApiResponse<User>>() {
+                                });
 
                 assertEquals("success", response.getStatus(), "Status phải là 'success'");
                 assertNotNull(response.getMessage(), "Message không được null");
@@ -88,7 +89,8 @@ public class UserControllerIT {
 
                 // assert
                 ApiResponse<List<User>> response = objectMapper.readValue(resultStr,
-                                new TypeReference<ApiResponse<List<User>>>() {});
+                                new TypeReference<ApiResponse<List<User>>>() {
+                                });
 
                 assertEquals("success", response.getStatus(), "Status phải là 'success'");
                 assertNotNull(response.getMessage(), "Message không được null");
@@ -118,7 +120,8 @@ public class UserControllerIT {
 
                 // assert
                 ApiResponse<User> response = objectMapper.readValue(resultStr,
-                                new TypeReference<ApiResponse<User>>() {});
+                                new TypeReference<ApiResponse<User>>() {
+                                });
 
                 assertEquals("success", response.getStatus(), "Status phải là 'success'");
                 assertNotNull(response.getMessage(), "Message không được null");
@@ -143,7 +146,8 @@ public class UserControllerIT {
 
                 // assert
                 ApiResponse<Object> response = objectMapper.readValue(resultStr,
-                                new TypeReference<ApiResponse<Object>>() {});
+                                new TypeReference<ApiResponse<Object>>() {
+                                });
 
                 assertEquals("error", response.getStatus(), "Status phải là 'error'");
                 assertNotNull(response.getMessage(), "Message không được null");
@@ -170,7 +174,8 @@ public class UserControllerIT {
 
                 // assert
                 ApiResponse<User> response = objectMapper.readValue(resultStr,
-                                new TypeReference<ApiResponse<User>>() {});
+                                new TypeReference<ApiResponse<User>>() {
+                                });
 
                 assertEquals("success", response.getStatus(), "Status phải là 'success'");
                 assertNotNull(response.getMessage(), "Message không được null");
@@ -201,7 +206,8 @@ public class UserControllerIT {
                 // assert
                 if (!resultStr.isEmpty()) { // Nếu API trả về body
                         ApiResponse<Object> response = objectMapper.readValue(resultStr,
-                                        new TypeReference<ApiResponse<Object>>() {});
+                                        new TypeReference<ApiResponse<Object>>() {
+                                        });
                         assertEquals("success", response.getStatus(), "Status phải là 'success'");
                         assertNotNull(response.getMessage(), "Message không được null");
                         assertNull(response.getData(), "Data phải là null khi xóa");
